@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\StoreRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         User::create($request->validated());
-        redirect()->route('products.index')->with('data',['success'=>true,'message'=>'Пользователь создан']);
+        redirect()->route('signin')->with('data',['success'=>true,'message'=>'Пользователь создан']);
     }
 
     public function signin(){
@@ -25,7 +26,10 @@ class UserController extends Controller
 
     public function login(LoginRequest $request){
         if(Auth::attempt($request->only(['email','password']))){
-            return redirect()->route('info')->with('data',['success'=>true,'message'=>'Вы авторизировались']);
+            if(Auth::user()->role === 'admin'){
+                return redirect()->route('indexadmin')->with('data',['success'=>true,'message'=>'Вы авторизировались']);
+            }
+            return redirect()->route('index')->with('data',['success'=>true,'message'=>'Вы авторизировались']);
         }
         else{
             return redirect()->route('signin')->with('data',['success'=>false,'message'=>'Не удалось авторизироваться']);
@@ -36,6 +40,6 @@ class UserController extends Controller
         if(Auth::check()){
             Auth::logout();
         }
-        return redirect()->route('info')->with('data',['success'=>true,'message'=>'Вы вышли из системы']);
+        return redirect()->route('signin')->with('data',['success'=>true,'message'=>'Вы вышли из системы']);
     }
 }

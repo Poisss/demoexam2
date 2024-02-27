@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('number_car',11);
             $table->text('description');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->emun('status',['новое','подтверждено','отклонено'])->default('новое');
+            $table->enum('status',['новое','подтверждено','отклонено'])->default('новое');
             $table->timestamps();
         });
     }
