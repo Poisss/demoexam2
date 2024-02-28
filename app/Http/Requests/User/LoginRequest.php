@@ -9,8 +9,8 @@ class LoginRequest extends WebRequest
     public function rules(): array
     {
         return [
-            'login'=>['required','string','max:50','unique:users,login'],
-            'password'=>['reqiered','string','min:5','max:50']
+            'login'=>['required','string','max:50','exists:users,login'],
+            'password'=>['required','string','min:5','max:50']
         ];
     }
 }

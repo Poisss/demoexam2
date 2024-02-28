@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/apllications',[ApllicationController::class,'index'])->name('index');
     Route::resource('/apllications', ApllicationController::class)->only('store','create');
 
-    Route::prefix('/admin')->group(['middleware' => 'checkRole:admin'],function(){
+    Route::prefix('/admin')->group(function(){
         Route::get('/apllications',[ApllicationController::class,'indexadmin'])->name('indexadmin');
         Route::resource('/apllications', ApllicationController::class)->only('edit','update');
-    });
+    })->middleware('checkRole:admin');
 });

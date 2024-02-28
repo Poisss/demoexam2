@@ -29,8 +29,8 @@ class ApllicationController extends Controller
 
     public function store(StoreRequest $request)
     {
-        Apllication::create($request->validated());
-        redirect()->route('index')->with('data',['success'=>true,'message'=>'Заявление создано']);
+        Apllication::create(['user_id'=>Auth::user()->id]+$request->validated());
+        return redirect()->route('index')->with('message','Заявление создано');
     }
 
     public function edit(Apllication $apllication)
@@ -41,7 +41,7 @@ class ApllicationController extends Controller
     public function update(UpdateRequest $request, Apllication $apllication)
     {
         $apllication->update($request->validated());
-        return  redirect()->route('indexadmin')->with('data',['success'=>true,'message'=>'Заявление отредактировано']);
+        return  redirect()->route('indexadmin')->with('message','Заявление отредактировано');
     }
 
 }

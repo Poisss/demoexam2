@@ -2,27 +2,14 @@
 
 namespace App\Http\Requests\Apllication;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\WebRequest;
 
-class UpdateRequest extends FormRequest
+class UpdateRequest extends WebRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            //
+            'status'=>['required','in:новое,подтверждено,отклонено']
         ];
     }
 }

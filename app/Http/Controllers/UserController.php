@@ -17,7 +17,7 @@ class UserController extends Controller
     public function store(StoreRequest $request)
     {
         User::create($request->validated());
-        redirect()->route('signin')->with('data',['success'=>true,'message'=>'Пользователь создан']);
+        return redirect()->route('signin')->with('message','Пользователь создан');
     }
 
     public function signin(){
@@ -25,14 +25,14 @@ class UserController extends Controller
     }
 
     public function login(LoginRequest $request){
-        if(Auth::attempt($request->only(['email','password']))){
+        if(Auth::attempt($request->validated())){
             if(Auth::user()->role === 'admin'){
-                return redirect()->route('indexadmin')->with('data',['success'=>true,'message'=>'Вы авторизировались']);
+                return redirect()->route('indexadmin')->with('message','Вы авторизировались');
             }
-            return redirect()->route('index')->with('data',['success'=>true,'message'=>'Вы авторизировались']);
+            return redirect()->route('index')->with('message','Вы авторизировались');
         }
         else{
-            return redirect()->route('signin')->with('data',['success'=>false,'message'=>'Не удалось авторизироваться']);
+            return redirect()->route('signin')->with('message','Неверный логин или пароль');
         }
     }
 
@@ -40,6 +40,6 @@ class UserController extends Controller
         if(Auth::check()){
             Auth::logout();
         }
-        return redirect()->route('signin')->with('data',['success'=>true,'message'=>'Вы вышли из системы']);
+        return redirect()->route('signin')->with('message','Вы вышли из системы');
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use App\Http\Requests\WebRequest;
-use Illuminate\Validation\Rules\Unique;
 
 class StoreRequest extends WebRequest
 {
@@ -16,7 +15,7 @@ class StoreRequest extends WebRequest
             'email'=>['required','string','max:50','email','unique:users,email'],
             'phone'=>['required','string','max:50',],
             'login'=>['required','string','max:50','unique:users,login'],
-            'password'=>['reqiered','string','min:5','max:50']
+            'password'=>['required','string','min:5','max:50']
         ];
     }
 }
