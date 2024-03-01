@@ -29,3 +29,18 @@ p{
 .error{
     color: red;
 }
+.success{
+    color: rgba(0, 128, 0, 0.683);
+}
+table{
+    width: 100%;
+}
+tr:nth-child(odd){
+    background: rgb(0, 221, 255);
+}
+td{
+    padding: 5px;
+}
+button{
+    padding: 15px;
+}

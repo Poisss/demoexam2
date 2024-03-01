@@ -1,7 +1,8 @@
 @extends('main')
 @section('title','Редактирование')
 @section('content')
-    <form action="{{route('update')}}" method="POST">
+    <form action="{{route('apllications.update',['apllication'=>$data->id])}}" method="post">
+        @method('put')
         @csrf
         <h1>Редактирование</h1>
         <h3>
@@ -22,9 +23,9 @@
         <p>
             <label for="status">Статус</label>
             <select name="status" id="status">
-                <option value="новое" {{$data->status=='новое':'selected'?''}}>новое</option>
-                <option value="подтверждено" {{$data->status=='подтверждено':'selected'?''}}>подтверждено</option>
-                <option value="отклонено" {{$data->status=='отклонено':'selected'?''}}>отклонено</option>
+                <option value="новое" {{$data->status=='новое'?'selected':''}}>новое</option>
+                <option value="подтверждено" {{$data->status=='подтверждено'?'selected':''}}>подтверждено</option>
+                <option value="отклонено" {{$data->status=='отклонено'?'selected':''}}>отклонено</option>
             </select>
             @foreach ($errors->get('status') as $error)
                 <p class="error">

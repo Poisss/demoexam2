@@ -4,9 +4,11 @@
     <form action="{{route('login')}}" method="POST">
         @csrf
         <h1>Авторизация</h1>
-        <p class="error">
-            {{iss($mesage)}}
-        </p>
+        @if (session('message'))
+            <p class="success">
+                {{session('message')}}
+            </p>
+        @endif
         <p>
             <label for="login">Логин</label>
             <input id="login" name="login" type="text">

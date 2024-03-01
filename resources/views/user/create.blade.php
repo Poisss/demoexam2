@@ -2,6 +2,7 @@
 @section('title','Регистрация')
 @section('content')
     <form action="{{route('logup')}}" method="POST">
+        @method('POST')
         @csrf
         <h1>Регистрация</h1>
         <p>

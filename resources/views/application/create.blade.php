@@ -1,7 +1,8 @@
 @extends('main')
 @section('title','Регистрация')
 @section('content')
-    <form action="{{route('store')}}" method="POST">
+    <form action="{{route('apllications.store')}}" method="POST">
+        @method('POST')
         @csrf
         <h1>Создание</h1>
         <p>

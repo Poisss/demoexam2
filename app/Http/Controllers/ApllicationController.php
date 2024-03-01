@@ -12,19 +12,19 @@ class ApllicationController extends Controller
 {
     public function index()
     {
-        $apllication=Apllication::where('user_id',Auth::user()->id)->orderBy('id','DESC')->get();
-        return view('apllication.index')->with('data',$apllication);
+        $apllication=Apllication::query()->where('user_id',Auth::user()->id)->orderBy('id','DESC')->get();
+        return view('application.index')->with('data',$apllication);
     }
 
     public function indexadmin()
     {
-        $apllication=Apllication::all()->orderBy('id','DESC');
-        return view('apllication.indexadmin')->with('data',$apllication);
+        $apllication=Apllication::query()->orderBy('id','DESC')->get();
+        return view('application.indexadmin')->with('data',$apllication);
     }
 
     public function create()
     {
-        return view('apllication.create');
+        return view('application.create');
     }
 
     public function store(StoreRequest $request)
@@ -35,7 +35,7 @@ class ApllicationController extends Controller
 
     public function edit(Apllication $apllication)
     {
-        return view('apllication.edit')->with('data',$apllication);
+        return view('application.edit')->with('data',$apllication);
     }
 
     public function update(UpdateRequest $request, Apllication $apllication)
