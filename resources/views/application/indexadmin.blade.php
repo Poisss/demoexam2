@@ -1,7 +1,17 @@
 @extends('main')
 @section('title','Заявления пользователей')
 @section('content')
-<h1>Все заявления</h1>
+<div class="header">
+    <div class="logo">
+        <h1>Нарушениям.Нет</h1>
+    </div>
+    <div class="logout">
+        <a href="{{route('logout')}}">
+            <button>Выйти</button>
+        </a>
+    </div>
+</div>
+<h2>Все заявления</h2>
 @if (session('message'))
     <p class="success">
         {{session('message')}}

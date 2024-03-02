@@ -9,11 +9,11 @@ class StoreRequest extends WebRequest
     public function rules(): array
     {
         return [
-            'first_name'=>['required','string','max:50','alpha'],
-            'last_name'=>['required','string','max:50','alpha'],
-            'patronymic'=>['required','string','max:50','alpha'],
+            'first_name'=>['required','string','max:50','regex:/^[\p{Cyrillic}\s]+$/u'],
+            'last_name'=>['required','string','max:50','regex:/^[\p{Cyrillic}\s]+$/u'],
+            'patronymic'=>['required','string','max:50','regex:/^[\p{Cyrillic}\s]+$/u'],
             'email'=>['required','string','max:50','email','unique:users,email'],
-            'phone'=>['required','string','max:50',],
+            'phone'=>['required','string','max:50','regex:/\+7\(\d{3}\)-\d{3}-\d{2}-\d{2}/'],
             'login'=>['required','string','max:50','unique:users,login'],
             'password'=>['required','string','min:5','max:50']
         ];

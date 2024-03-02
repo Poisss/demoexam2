@@ -43,7 +43,7 @@
         </p>
         <p>
             <label for="phone">Номер тел.</label>
-            <input id="phone" name="phone" type="text">
+            <input id="phone" name="phone" type="text" placeholder="+7(xxx)-xxx-xx-xx">
             @foreach ($errors->get('phone') as $error)
                 <p class="error">
                     {{$error}}

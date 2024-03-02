@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function create()
     {
-        return view('user.create');
+        return view('user.create')->with('logout',true);
     }
 
     public function store(StoreRequest $request)
@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
     public function signin(){
-        return view('user.signin');
+        return view('user.signin')->with('logout',true);
     }
 
     public function login(LoginRequest $request){
